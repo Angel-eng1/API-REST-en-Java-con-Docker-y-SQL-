@@ -1,0 +1,36 @@
+### Endpoint 1 - detalle de los pedidos
+GET http://localhost:8080/api/reportes/trazabilidad
+Accept: application/json
+### Endpoint 2 - categorias con al menos tres pedidos
+GET http://localhost:8080/api/reportes/metricas-categorias
+Accept: application/json
+
+### Endpoint 3 - ranking y participacion por categoria conservando el detalle
+GET http://localhost:8080/api/reportes/segmentacion-productos
+Accept: application/json
+
+### Endpoint 4 - clasificacion de pagos con UDF en MySQL
+GET http://localhost:8080/api/reportes/auditoria-pagos
+Accept: application/json
+
+### Endpoint 5 - sin filtros
+GET http://localhost:8080/api/reportes/reporte-filtrado
+Accept: application/json
+
+### Endpoint 5 - combinacion de los cuatro filtros
+GET http://localhost:8080/api/reportes/reporte-filtrado?estado=Entregado&idCategoria=1&desde=2026-10-01&hasta=2026-10-08
+
+### Estado con espacio y tilde
+GET http://localhost:8080/api/reportes/reporte-filtrado?estado=En%20preparaci%C3%B3n
+
+### Fechas invertidas - HTTP 400
+GET http://localhost:8080/api/reportes/reporte-filtrado?desde=2026-10-08&hasta=2026-10-01
+
+### Formato de fecha invalido - HTTP 400
+GET http://localhost:8080/api/reportes/reporte-filtrado?desde=ayer
+
+### Categoria inexistente - HTTP 404
+GET http://localhost:8080/api/reportes/reporte-filtrado?idCategoria=2147483647
+
+### Rango valido sin datos - HTTP 200 y []
+GET http://localhost:8080/api/reportes/reporte-filtrado?desde=1900-01-01&hasta=1900-01-02

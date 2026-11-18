@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#772d49">
+  <title>Modo Shake · Reportes</title>
+  <link rel="stylesheet" href="/styles.css?v=20de22f83fb1">
+  <script src="/app.js?v=a0d0023795b5" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/"><span class="brand-mark">ms</span><span>modo shake<small>Panel de reportes</small></span></a>
+    <p class="nav-label">CONSULTAR</p>
+    <nav aria-label="Reportes">
+      <button data-report="trazabilidad" aria-current="page"><span>Detalle de pedidos</span><small>Productos, fechas e importes</small></button>
+      <button data-report="metricas-categorias"><span>Métricas por categoría</span><small>Totales y rendimiento</small></button>
+      <button data-report="segmentacion-productos"><span>Ranking de productos</span><small>Posición y participación</small></button>
+      <button data-report="auditoria-pagos"><span>Auditoría de pagos</span><small>Saldos y clasificaciones</small></button>
+      <button data-report="reporte-filtrado"><span>Reporte con filtros</span><small>Estado, categoría y fechas</small></button>
+    </nav>
+    <div class="sidebar-bottom"><span class="live-dot"></span>Proyecto Modo Shake<small>Base de datos · MySQL</small></div>
+  </aside>
+  <main>
+    <header class="topbar"><span>Reportes del negocio</span><span id="connection" role="status">Conectando con la API…</span></header>
+    <section class="workspace" aria-labelledby="report-title">
+      <div class="heading">
+        <div><p class="eyebrow">MODO SHAKE / REPORTES</p><h1 id="report-title">Detalle de pedidos</h1><p id="description" class="description"></p></div>
+        <div class="report-actions"><button id="download-json" class="button primary" type="button" disabled title="Descarga todos los registros de la consulta, con los filtros aplicados">Descargar JSON ↓</button><button id="refresh" class="button">Actualizar datos <span aria-hidden="true">↻</span></button></div>
+      </div>
+      <form id="filters" class="filters" hidden>
+        <div class="filter-heading"><h2>Filtrar el reporte</h2><p>Combina los campos que necesites.</p></div>
+        <div class="filter-fields">
+          <label>Estado<select name="estado"><option value="">Todos los estados</option><option>Recibido</option><option>En preparación</option><option>Entregado</option><option>Cancelado</option></select></label>
+          <label>Categoría (ID)<input name="idCategoria" type="number" min="1" step="1" placeholder="Todas"></label>
+          <label>Desde<input name="desde" type="date"></label>
+          <label>Hasta<input name="hasta" type="date"></label>
+          <button class="button primary" type="submit">Aplicar filtros</button>
+          <button class="text-button" type="reset">Limpiar</button>
+        </div>
+      </form>
+      <div id="metrics" class="metrics" aria-label="Resumen del reporte"></div>
+      <section id="table-card" class="table-card" aria-labelledby="table-title">
+        <div class="table-toolbar"><div><h2 id="table-title">Resultados</h2><p id="record-count" aria-live="polite"></p></div><label class="search-label">Buscar en la tabla<input id="search" type="search" placeholder="Producto, categoría, pedido…" autocomplete="off"></label></div>
+        <p id="report-note" class="report-note"></p>
+        <div id="message" class="message" role="status" hidden></div>
+        <div id="table-wrap" class="table-wrap" tabindex="0" role="region" aria-label="Tabla de resultados desplazable"><table><caption class="sr-only" id="caption">Detalle de pedidos</caption><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div>
+        <footer class="table-footer"><span id="page-info"></span><div class="pagination"><button id="previous" class="button" aria-label="Página anterior">←</button><button id="next" class="button" aria-label="Página siguiente">→</button></div></footer>
+      </section>
+      <footer class="page-footer"><span id="updated">Datos consultados desde la API Java</span><a id="json-link" target="_blank" rel="noopener" href="/api/reportes/trazabilidad">Abrir respuesta JSON ↗</a></footer>
+    </section>
+  </main>
+</body>
+</html>

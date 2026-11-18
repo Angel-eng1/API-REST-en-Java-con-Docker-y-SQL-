@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action>
+        <actionName>run</actionName>
+        <goals>
+            <goal>spring-boot:run</goal>
+        </goals>
+        <properties>
+            <spring-boot.run.profiles>netbeans</spring-boot.run.profiles>
+        </properties>
+    </action>
+    <action>
+        <actionName>run.single.main</actionName>
+        <goals>
+            <goal>spring-boot:run</goal>
+        </goals>
+        <properties>
+            <spring-boot.run.profiles>netbeans</spring-boot.run.profiles>
+        </properties>
+    </action>
+</actions>
